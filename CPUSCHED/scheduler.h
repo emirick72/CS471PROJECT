@@ -11,7 +11,7 @@ struct Process {
     int burst;
     int start;
     int finish;
-}
+};
 
 void runFIFO(vector<Process>& processes);
 void runSJF(vector<Process>& processes);
