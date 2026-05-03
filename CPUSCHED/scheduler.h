@@ -18,4 +18,4 @@ void runSJF(vector<Process>& processes);
 void calculateStats(vector<Process>& processes);
 
 
-#endif;
+#endif

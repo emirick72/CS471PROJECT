@@ -83,7 +83,7 @@ void calculateStats(vector<Process>& processes) {
     for (auto &p : processes) {
         int wait = p.start - p.arrival;
         int turnaround = p.finish - p.arrival;
-        int reponse = wait;
+        int response = wait;
 
         totalWait += wait;
         totalTurnaround += turnaround;
@@ -100,7 +100,7 @@ void calculateStats(vector<Process>& processes) {
     cout << "Processes: " << n << endl;
     cout << "Total elasped time: " << elapsed << endl;
     cout << "Throughput: " << (double)n / elapsed << endl;
-    cout << "CPU Utilization: " << (totalBuurst / elapsed) * 100 << "%" << endl;
+    cout << "CPU Utilization: " << (totalBurst / elapsed) * 100 << "%" << endl;
     cout << "Avg Waiting Time: " << totalWait / n << endl;
     cout << "Avg Turnaround Time: " << totalTurnaround / n << endl;
     cout << "Avg Response Time: " << totalResponse / n << endl;
