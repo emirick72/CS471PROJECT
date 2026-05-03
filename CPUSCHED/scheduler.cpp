@@ -69,3 +69,39 @@ void runSJF(vector<Process>& processes) {
 
     processes = result;
 }
+
+
+void calculateStats(vector<Process>& processes) {
+    double totalWait = 0;
+    double totalTurnaround = 0;
+    double totalResponse = 0;
+    double totalBurst = 0;
+
+    int startTime = processes[0].arrival;;
+    int endTime = 0;
+
+    for (auto &p : processes) {
+        int wait = p.start - p.arrival;
+        int turnaround = p.finish - p.arrival;
+        int reponse = wait;
+
+        totalWait += wait;
+        totalTurnaround += turnaround;
+        totalResponse += response;
+        totalBurst += p.burst;
+
+        endTime = max(endTime, p.finish);
+    }
+
+    int n = processes.size();
+    double elapsed = endTime - startTime;
+
+    cout << "\n--- Statistics ---\n";
+    cout << "Processes: " << n << endl;
+    cout << "Total elasped time: " << elapsed << endl;
+    cout << "Throughput: " << (double)n / elapsed << endl;
+    cout << "CPU Utilization: " << (totalBuurst / elapsed) * 100 << "%" << endl;
+    cout << "Avg Waiting Time: " << totalWait / n << endl;
+    cout << "Avg Turnaround Time: " << totalTurnaround / n << endl;
+    cout << "Avg Response Time: " << totalResponse / n << endl;
+}
