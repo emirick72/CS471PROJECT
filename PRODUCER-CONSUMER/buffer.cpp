@@ -62,3 +62,8 @@ void destroyBuffer() {
     sem_destroy(&emptySlots);
     sem_destroy(&fullSlots);
 }
+
+bool isDone() {
+    lock_guard<mutex> lock(mtx);
+    return doneProducing;
+}

@@ -1,14 +1,25 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <queue>
+#include <mutex>
+#include <semaphore.h>
 #include <cstdlib>
 #include <chrono>
 #include "buffer.h"
 
 using namespace std;
 
+vector<float> storeTotals(20, 0);
+vector<float> monthTotals(13, 0);
+float globalTotal = 0;
+int totalProduced = 0;
+const int MAX_ITEMS = 1000;
+
 void producer(int id) {
     while (true) {
+
+        if (totalProduced >= MAX_ITEMS) break;
         Record r;
 
         r.day = rand() % 30 + 1;
@@ -18,6 +29,17 @@ void producer(int id) {
         r.regNum = rand() % 6 + 1;
         r.amount = (rand() % 100000) / 100.0;
 
+        sem_wait(&emptySlots);
+        mtx.lock();
+
+        if (totalProduced < MAX_ITEMS) {
+            buffer.push(r);
+            totalProduced++;
+        }
+
+        mtx.unlock();
+        sem_post(&fullSlots);
+
         insertItem(r);
 
         if (isDone()) break;
@@ -26,45 +48,29 @@ void producer(int id) {
     }
 }
 
-void consumer(int id) {
-    float localTotal = 0;
-
-    while (true) {
-        Record r;
-
-        if (!removeItem(r)) {
-            break;
-        }
-
-        localTotal += r.amount;
-    }
-
-    cout << "Consumer" << id << " total: " << localTotal << endl;
-}
+// CONSUMER METHOD GOES HERE
 
 
 int main() {
-    srand(time(0));
 
-    initBuffer(10);
+    sem_init(&emptySlots, 0, BUFFER_SIZE);
+    sem_init(&fullSlots, 0, 0);
 
-    int p = 5, c = 5;
+    vector<thread> producers;
 
-    vector<thread> producers, consumers;
-
-    for (int i = 0; i < p; i++) {
-        producers.emplace_back(producer, i+1);
+    for (int i = 0; i < 2; i++) {
+        producers.push_back(thread(producer, i+1));
     }
 
-    for (int i = 0; i < c; i++) {
-        consumers.emplace_back(consumer, i+1);
+    for (auto &t : producer) {
+        t.join();
     }
 
-    for (auto &t : producers) t.join();
-    for (auto &t : consumers) t.join();
+    cout << "PRODUCED (TEST): " << totalProduced << endl;
 
-    destroyBuffer();
 
+
+    
     return 0;
 
 }
