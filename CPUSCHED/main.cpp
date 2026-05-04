@@ -5,6 +5,11 @@
 
 using namespace std;
 
+
+/**
+ * Vector that reads input (arrival and burst times)
+ * and returns the processes for that input.
+ */
 vector<Process> readInput(string filename) {
     ifstream file(filename);
     vector<Process> processes;
@@ -19,6 +24,12 @@ vector<Process> readInput(string filename) {
     return processes;
 }
 
+
+/**
+ * Main function that reads input from a sample text file
+ * and outputs a choice for the user to make (FIFO or SJF algorithm).
+ * Also outputs the statistics for the algorithms being executed.
+ */
 int main () {
     vector<Process> processes = readInput("input.txt");
 

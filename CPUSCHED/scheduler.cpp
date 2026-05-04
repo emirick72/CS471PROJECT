@@ -4,6 +4,13 @@
 
 using namespace std;
 
+/**
+ * Function that runs the FIFO (first in, first out)
+ * scheduling algorithm.
+ * Simulates a non-preemptive CPU scheduling algorithm.
+ * Takes a list of processes (arrival and burst times) as input.
+ * The first process that arrives is the first one to execute.
+ */
 void runFIFO(vector<Process>& processes) {
     sort(processes.begin(), processes.end(),
         [](Process a, Process b) {
@@ -25,6 +32,14 @@ void runFIFO(vector<Process>& processes) {
     }
 }
 
+
+/**
+ * Function that runs the SJF (shortest job first)
+ * scheduling algorithm.
+ * Simulates a non-preemptive CPU scheduling algorithm.
+ * Takes a list of processes (arrival and burst times) as input.
+ * `processes` vector is updated with result.
+ */
 void runSJF(vector<Process>& processes) {
     vector<Process> result;
     int currentTime = 0;
@@ -70,7 +85,11 @@ void runSJF(vector<Process>& processes) {
     processes = result;
 }
 
-
+/**
+ * Function that calculates and outputs the statistics of each
+ * scheduling algorithm (FIFO and SJF).
+ * Each output is in a sample output file.
+ */
 void calculateStats(vector<Process>& processes) {
     double totalWait = 0;
     double totalTurnaround = 0;
