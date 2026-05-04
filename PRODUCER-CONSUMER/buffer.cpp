@@ -13,6 +13,7 @@ mutex mtx;
 
 int totalProduced = 0;
 const int MAX_ITEMS = 1000;
+
 bool doneProducing = false;
 
 void initBuffer(int size) {

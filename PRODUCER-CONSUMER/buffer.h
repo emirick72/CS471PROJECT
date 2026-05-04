@@ -3,6 +3,9 @@
 
 #include <queue>
 
+extern int totalProduced;
+extern const int MAX_ITEMS;
+
 struct Record {
     int day, month, year;
     int storeID;
