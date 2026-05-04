@@ -16,12 +16,15 @@ const int MAX_ITEMS = 1000;
 
 bool doneProducing = false;
 
+
+/**Function to initialize the buffer */
 void initBuffer(int size) {
     BUFFER_SIZE = size;
     sem_init(&emptySlots, 0, size);
     sem_init(&fullSlots, 0, 0);
 }
 
+/**Function to insert items into the buffer (using mutex lock) */
 void insertItem(const Record& item) {
     sem_wait(&emptySlots);
     mtx.lock();
@@ -39,6 +42,8 @@ void insertItem(const Record& item) {
     sem_post(&fullSlots);
 }
 
+
+/**Function to remove items from the buffer (using mutex lock) */
 bool removeItem(Record& item) {
     sem_wait(&fullSlots);
     mtx.lock();
@@ -59,11 +64,13 @@ bool removeItem(Record& item) {
     return true;
 }
 
+/**Function to destroy the buffer when finished */
 void destroyBuffer() {
     sem_destroy(&emptySlots);
     sem_destroy(&fullSlots);
 }
 
+/**Function for when done producing records */
 bool isDone() {
     lock_guard<mutex> lock(mtx);
     return doneProducing;

@@ -6,6 +6,7 @@
 extern int totalProduced;
 extern const int MAX_ITEMS;
 
+/**Initialize variables */
 struct Record {
     int day, month, year;
     int storeID;
@@ -13,7 +14,7 @@ struct Record {
     float amount;
 };
 
-
+/**Initialize functions */
 void initBuffer(int size);
 void insertItem(const Record& item);
 bool removeItem(Record& item);

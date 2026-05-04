@@ -16,6 +16,7 @@ vector<float> storeTotals(20, 0);
 vector<float> monthTotals(13, 0);
 float globalTotal = 0;
 
+/**Function for producers. Takes in record id as arguement. */
 void producer(int id) {
     while (true) {
 
@@ -38,7 +39,9 @@ void producer(int id) {
 }
 
 
-
+/**Function for consumers. Outputs the consumer id and the total number of records
+ * that that consumer has.
+ */
 void consumer(int id) {
     float localTotal = 0;
 
@@ -60,9 +63,12 @@ void consumer(int id) {
 }
 
 
-
-
-
+/**Main function. Joins together producers and consumers and
+ * outputs how many records were produced,
+ * the total simulation time, and 
+ * the global totals for store-wide sales,
+ * month-wide sales, and aggregate sales.
+  */
 int main() {
 
     srand(time(0));
