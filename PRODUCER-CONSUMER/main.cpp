@@ -1,4 +1,4 @@
-#include <iosteam>
+#include <iostream>
 #include <thread>
 #include <vector>
 #include <cstdlib>
@@ -22,7 +22,7 @@ void producer(int id) {
 
         if (isDone()) break;
 
-        this_thread::sleep_for(chrone::milliseconds(rand()%35 + 5));
+        this_thread::sleep_for(chrono::milliseconds(rand()%35 + 5));
     }
 }
 

@@ -17,3 +17,5 @@ bool removeItem(Record& item);
 void destroyBuffer();
 
 bool isDone();
+
+#endif
