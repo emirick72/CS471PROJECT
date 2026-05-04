@@ -13,9 +13,7 @@ struct Record {
 
 void initBuffer(int size);
 void insertItem(const Record& item);
-void removeItem(Record& item);
+bool removeItem(Record& item);
 void destroyBuffer();
 
 bool isDone();
-
-#endif

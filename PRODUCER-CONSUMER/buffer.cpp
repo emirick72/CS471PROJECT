@@ -38,8 +38,7 @@ void insertItem(const Record& item) {
     sem_post(&fullSlots);
 }
 
-
-void removeItem(Record& item) {
+bool removeItem(Record& item) {
     sem_wait(&fullSlots);
     mtx.lock();
 
