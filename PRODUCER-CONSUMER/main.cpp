@@ -15,8 +15,6 @@ using namespace std;
 vector<float> storeTotals(20, 0);
 vector<float> monthTotals(13, 0);
 float globalTotal = 0;
-//int totalProduced = 0;
-//const int MAX_ITEMS = 1000;
 
 void producer(int id) {
     while (true) {
