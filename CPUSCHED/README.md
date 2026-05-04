@@ -1,4 +1,4 @@
-#Overview
+Overview
 
 ## How to compile:
 Run this command in the terminal: `g++ main.cpp scheduler.cpp -o sched`
