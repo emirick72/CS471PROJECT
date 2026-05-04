@@ -1,0 +1,12 @@
+Choose Scheduling Algorithm:
+1. FIFO
+2. SJF
+
+--- Statistics ---
+Processes: 500
+Total elasped time: 12402
+Throughput: 0.0403161
+CPU Utilization: 100%
+Avg Waiting Time: 5723.82
+Avg Turnaround Time: 5748.63
+Avg Response Time: 5723.82
